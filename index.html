@@ -19,6 +19,10 @@
             background-color: #6B8E23;
             width: 0;
         }
+        iframe {
+            width: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -39,6 +43,15 @@
                 progressBar.style.width = scrollPercentage + '%';
             });
         });
+
+        // Add this script to make the iframe responsive
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'iframeHeight') {
+                const iframe = document.querySelector('iframe');
+                iframe.style.height = event.data.height + 'px';
+            }
+        });
     </script>
+
 </body>
 </html>
