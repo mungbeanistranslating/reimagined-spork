@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    /* Reading Progress Bar */
+    #reading-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #F5E8D0;
+      z-index: 1001;
+    }
+
+    #reading-progress-bar {
+      height: 100%;
+      background-color: #6B8E23;
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+
+    /* Last Updated Timestamp */
+    #last-updated {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    /* Translation Status */
+    .translation-status-wrapper {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress-container">
+    <div id="reading-progress-bar"></div>
+  </div>
+
+  <!-- Page Content -->
+  <div style="height: 2000px; padding: 20px;">
+    <h1>Welcome to My Website</h1>
+    <p>Scroll down to see the reading progress bar in action.</p>
+  </div>
+
+  <!-- Last Updated Timestamp -->
+  <div id="last-updated">
+    Last updated: <span id="update-date"></span>
+  </div>
+
+  <!-- Translation Status Indicator -->
+  <div class="translation-status-wrapper">
+    <span class="translation-status" data-status="ongoing">Ongoing</span>
+  </div>
+
+  <script>
+    // Reading Progress Bar
+    document.addEventListener('DOMContentLoaded', function() {
+      const progressBar = document.getElementById('reading-progress-bar');
+
+      window.addEventListener('scroll', function() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercentage = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercentage + '%';
+      });
+    });
+
+    // Last Updated Timestamp
+    document.addEventListener('DOMContentLoaded', function() {
+      const updateDateElement = document.getElementById('update-date');
+      const lastUpdateDate = new Date('2024-03-06'); // Manually update this date
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      updateDateElement.textContent = lastUpdateDate.toLocaleDateString(undefined, options);
+    });
+  </script>
+
+</body>
+</html>
