@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Progress Bar</title>
+    <style>
+        #reading-progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #F5E8D0;
+            z-index: 1000;
+        }
+        #reading-progress-bar {
+            height: 100%;
+            background-color: #6B8E23;
+            width: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="reading-progress-container">
+        <div id="reading-progress-bar"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressContainer = document.getElementById('reading-progress-container');
+            const progressBar = document.getElementById('reading-progress-bar');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercentage = (scrollTop / docHeight) * 100;
+                
+                progressBar.style.width = scrollPercentage + '%';
+            });
+        });
+    </script>
+</body>
+</html>
