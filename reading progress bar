@@ -1,0 +1,71 @@
+// Reading Progress Bar
+document.addEventListener('DOMContentLoaded', function() {
+  const progressContainer = document.getElementById('reading-progress-container');
+  const progressBar = document.getElementById('reading-progress-bar');
+  
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercentage = (scrollTop / docHeight) * 100;
+    
+    progressBar.style.width = scrollPercentage + '%';
+  });
+});
+</script>
+
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #F5E8D0;
+  z-index: 1001;
+}
+
+#reading-progress-bar {
+  height: 100%;
+  background-color: #6B8E23;
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+<!-- 5. Last Updated Timestamp -->
+<div id="last-updated">
+  Last updated: <span id="update-date"></span>
+</div>
+
+<script>
+// Last Updated Timestamp
+document.addEventListener('DOMContentLoaded', function() {
+  // For Google Sites, we'll need to use a manual date since we can't 
+  // automatically detect the last modified date
+  const updateDateElement = document.getElementById('update-date');
+  
+  // Set this to your actual last update date
+  const lastUpdateDate = new Date('2024-03-06'); // Update this date manually
+  
+  // Format the date
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  updateDateElement.textContent = lastUpdateDate.toLocaleDateString(undefined, options);
+});
+</script>
+
+<style>
+#last-updated {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+</style>
+
+<!-- 12. Translation Status Indicator -->
+<div class="translation-status-wrapper">
+  <span class="translation-status" data-status="ongoing">Ongoing</span>
+</div>
+
+<script>
